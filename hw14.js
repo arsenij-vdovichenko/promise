@@ -8,7 +8,7 @@
 // Обробіть результати вирішення промісів та виведіть їх у консоль.
 
 
-function delayedPromise(value, ms){
+function delayedPromise(value){
     return new Promise((resolve, reject)=>{
         const ms = Math.floor(Math.random() * (5000 - 1000) + 1000)
         setTimeout(()=>{
@@ -25,4 +25,43 @@ const arrayPromise = [
       delayedPromise("promise5"),
     ]
 
-    Promise.all(arrayPromise).then()
+    Promise.all(arrayPromise).then((res) =>{
+        console.log(res);
+        
+    })
+
+
+
+
+//     Ви маєте набір функцій, які повертають проміси з випадковими затримками. Ваше завдання — виконати всі проміси одночасно за допомогою Promise.race і отримати результат найшвидшого проміса.
+
+
+
+// Створіть функцію randomDelay, яка приймає значення і повертає проміс з випадковою затримкою (від 1000 до 5000 мілісекунд).
+// Створіть масив з 5 промісів, використовуючи функцію randomDelay, із різними значеннями.
+// Використайте Promise.race, щоб виконати всі проміси з масиву і отримати результат найшвидшого проміса.
+// Обробіть результат найшвидшого проміса та виведіть його у консоль.
+
+
+
+function randomDelay(value){
+    return new Promise((resolve, reject)=>{
+        const ms = Math.floor(Math.random() * (5000 - 1000) + 1000)
+        setTimeout(()=>{
+            resolve(`проміс ${value} виконався за ${ms} мілесекунд`)
+        },ms)
+    })
+}
+
+const arrayNewPromise = [
+    randomDelay("promise1"),
+     randomDelay("promise2"),
+      randomDelay("promise3"),
+      randomDelay("promise4"),
+      randomDelay("promise5"),
+    ]
+
+    Promise.race(arrayNewPromise).then((res) =>{
+        console.log(res);
+        
+    })
